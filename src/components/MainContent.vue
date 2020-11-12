@@ -1,7 +1,7 @@
 <template>
   <fetch-results :loading="loading" :error="error">
     <template v-slot:result>
-      <div class="contentStyles">
+      <div class="contentStyles" v-if="movie">
         <div v-if="movie">
           <h1 class="movieTitle">{{ movie.Title }}</h1>
           <sub class="movieGenre">{{ movie.Genre }}</sub>
