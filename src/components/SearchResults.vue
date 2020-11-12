@@ -6,7 +6,7 @@
           v-for="movie in movies.Search"
           :key="movie.imdbID"
           class="movieItem"
-          :aria-selected="true"
+          :aria-selected="selectedMovieId === movie.imdbID"
           @click="onSelected(movie.imdbID)"
         >
           <h3>{{ movie.Title }}</h3>
@@ -68,6 +68,15 @@ export default {
 .movieItem:hover {
   background: var(--grey);
 }
+
+.movieItem[aria-selected="true"],
+.movieItem[aria-selected="true"]:hover {
+  background: var(--yellow);
+}
+
+h3 {
+  margin: 0;
+}
 sub {
   text-align: right;
   display: block;
@@ -76,5 +85,13 @@ sub {
   position: absolute;
   right: 1rem;
   top: 1rem;
+}
+
+[aria-selected="true"] {
+  background: var(--yellow);
+}
+
+[aria-selected="true"]:hover {
+  background: var(--yellow);
 }
 </style>

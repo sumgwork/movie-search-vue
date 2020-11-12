@@ -1,7 +1,7 @@
 import axios from "axios";
+import { apiKey } from "./config";
 
 // const apiKey = process.env.REACT_APP_OMDB_KEY;
-const apiKey = "1ea0160a";
 
 // This interceptor adds the apiKey to every api request
 axios.interceptors.request.use((config) => {

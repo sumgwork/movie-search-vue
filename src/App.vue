@@ -23,8 +23,9 @@ export default {
 /* global styles */
 :root {
   --sidebar-width: 600px;
-  --grey: #a2b9bc;
-  --black: #0e0e0e;
+  --grey: #efefef;
+  --black: #2e2e2e;
+  --yellow: #ffc600;
 }
 * {
   box-sizing: border-box;
@@ -46,5 +47,9 @@ body {
 
 .box-padding {
   padding: 1.5rem;
+}
+
+.center {
+  text-align: center;
 }
 </style>

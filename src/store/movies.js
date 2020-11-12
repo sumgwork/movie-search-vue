@@ -1,4 +1,4 @@
-import { baseMovieApiUrl } from "../utils/baseUrl";
+import { baseMovieApiUrl } from "../utils/config";
 import httpMovieService from "../utils/httpMovieService";
 
 export const movies = {
@@ -9,13 +9,13 @@ export const movies = {
       searchResults: {},
       loading: false,
       error: null,
-      page: 1,
+      currentPage: 1,
       searchText: "",
     };
   },
 
   mutations: {
-    setMovies(state, payload) {
+    setSearchResults(state, payload) {
       state.searchResults = payload;
     },
     setLoading(state, payload) {
@@ -27,22 +27,26 @@ export const movies = {
     setSearchText(state, payload) {
       state.searchText = payload;
     },
+    setCurrentPage(state, payload) {
+      state.currentPage = payload;
+    },
   },
 
   actions: {
     async fetchMovies(ctx) {
-      const { searchText, page } = ctx.state;
+      ctx.commit("setSearchResults", {});
+      const { searchText, currentPage } = ctx.state;
       if (searchText && searchText.length > 2) {
         ctx.commit("setLoading", true);
         try {
           const response = await httpMovieService.get(
-            `${baseMovieApiUrl}?s=${searchText}&page=${page}`
+            `${baseMovieApiUrl}?s=${searchText}&page=${currentPage}`
           );
 
           const data = response.data;
 
           if (data.Response === "True") {
-            ctx.commit("setMovies", data);
+            ctx.commit("setSearchResults", data);
           } else if (data.Response === "False") {
             throw new Error(data.Error);
           }
