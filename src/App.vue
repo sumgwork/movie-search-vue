@@ -4,7 +4,7 @@
       <sidebar />
     </template>
     <template v-slot:mainContent>
-      Content
+      <main-content />
     </template>
   </layout>
 </template>
@@ -12,10 +12,11 @@
 <script>
 import Layout from "./components/Layout";
 import Sidebar from "./components/Sidebar";
+import MainContent from "./components/MainContent";
 
 export default {
   name: "App",
-  components: { Layout, Sidebar },
+  components: { Layout, Sidebar, MainContent },
 };
 </script>
 

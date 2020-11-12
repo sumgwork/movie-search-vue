@@ -8,7 +8,7 @@ export const movies = {
     return {
       searchResults: {},
       loading: false,
-      error: null,
+      error: undefined,
       currentPage: 1,
       searchText: "",
     };
@@ -38,6 +38,7 @@ export const movies = {
       const { searchText, currentPage } = ctx.state;
       if (searchText && searchText.length > 2) {
         ctx.commit("setLoading", true);
+        ctx.commit("setError", undefined);
         try {
           const response = await httpMovieService.get(
             `${baseMovieApiUrl}?s=${searchText}&page=${currentPage}`

@@ -40,6 +40,7 @@ export default {
 
     const onSelected = (id) => {
       store.commit("singleMovie/setSelectedMovieId", id);
+      store.dispatch("singleMovie/fetchSingleMovie");
     };
 
     const selectedMovieId = computed(
