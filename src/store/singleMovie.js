@@ -29,15 +29,15 @@ export const singleMovie = {
   },
 
   actions: {
-    async fetchSingleMovie(ctx) {
+    async fetchSingleMovie({ state, commit }) {
       // Reset state
-      ctx.commit("setSingleMovieDetails", {});
+      commit("setSingleMovieDetails", {});
 
-      const { selectedMovieId } = ctx.state;
+      const { selectedMovieId } = state;
 
       if (selectedMovieId) {
-        ctx.commit("setLoading", true);
-        ctx.commit("setError", undefined);
+        commit("setLoading", true);
+        commit("setError", undefined);
         try {
           const response = await httpMovieService.get(
             `${baseMovieApiUrl}?i=${selectedMovieId}`
@@ -50,12 +50,12 @@ export const singleMovie = {
           if (data.Response === "False") {
             throw new Error(data.Error);
           } else {
-            ctx.commit("setSingleMovieDetails", data);
+            commit("setSingleMovieDetails", data);
           }
         } catch (error) {
-          ctx.commit("setError", error);
+          commit("setError", error);
         } finally {
-          ctx.commit("setLoading", false);
+          commit("setLoading", false);
         }
       }
     },
